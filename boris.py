@@ -12,14 +12,7 @@ from numpy import dot
 from numpy.linalg import norm
 from collections import Counter
 
-#functions for saving/loading the dictionary
-def save_obj(obj, name ):
-    with open('/Users/borismarinov/Desktop/University/Masters/Year2/Hackathon/teamgro/obj/'+ name + '.pkl', 'wb') as f:
-        pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
-
-def load_obj(name ):
-    with open('/Users/borismarinov/Desktop/University/Masters/Year2/Hackathon/teamgro/obj/' + name + '.pkl', 'rb') as f:
-        return pickle.load(f)
+from utils import load_obj
 
 
 #load in the datasets
@@ -144,10 +137,9 @@ fake_covid = pd.read_csv("/Users/borismarinov/Desktop/University/Masters/Year2/H
 #         top_5 = ranking_dct.most_common(5)
 #         final_dict[query] = top_5
 
+path = '/Users/borismarinov/Desktop/University/Masters/Year2/Hackathon/teamgro/obj/results_dict.pkl'
+# save_obj(final_dict, path)
 
-# save_obj(final_dict, "results_dict")
-
-final_dict = load_obj("results_dict")
-
+final_dict = load_obj(path)
 results = pd.DataFrame(final_dict.items(), columns = ["Tweet", "Top 5 Summaries and Scores"])
 
